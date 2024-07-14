@@ -99,13 +99,89 @@
 // }
 
 
-//Extend
+//Extend : to over come the dublicates data so we use extend here. We can reuse
 
-interface Book {
-    name: string;
-    price: number
-}
+// interface Book {
+//     name: string;
+//     price: number
+// }
 
-const book: Book = {
-    name: "Atomic habit"
+// interface Ebook extends Book {
+//     // name: string;
+//     // price: number;
+//     filesize: number;
+//     filType: string;
+// }
+// interface Audiobook extends Ebook {
+//     // name: string;
+//     // price: number;
+//     // filesize: number;
+//     // filType: string;
+//     duration: number;
+// }
+
+
+
+// const book: Audiobook = {
+//     name: "Atomic habit",
+//     price: 1200,
+//     filesize: 300,
+//     filType: "pdf",
+//     duration: 5,
+// }
+
+
+/////////////
+
+// Merge: we can merge two interfaces
+
+// interface Book {
+//     name: string;
+//     price: number
+// }
+
+// interface Book {
+//     size: number
+// }
+
+// const book: Book = {
+//     name: "The power of habit",
+//     price: 400,
+//     size: 45,
+// }
+
+
+//Limitations
+
+// dublication is not possible in type  but in interface
+
+// type Book {
+//     name: string;
+//     price: number
+// }
+
+// type Book {
+//     size: number
+// }
+
+// use for primitive
+// type Sanitized = string;
+// type EvenNum = number;
+
+
+///////////////////
+
+// Unions
+
+type ID = number | string;
+//Narrowing
+function printId(id: ID) {
+    if (typeof id === "string") {
+        console.log(id.toUpperCase())
+    } else {
+        console.log(id)
+    }
+
 }
+console.log(printId("4"))
+// console.log(printId(4))
