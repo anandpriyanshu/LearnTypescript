@@ -315,3 +315,52 @@
 //     posts[0]
 
 // })()
+
+
+////////////////////////////
+
+// Structural and Duck typing
+
+// interface ICreadential {
+//     username: string;
+//     password: string;
+//     isAdmin?: boolean
+// }
+
+// function login(credentials: ICreadential): boolean {
+//     console.log(credentials)
+//     return true
+// }
+
+// const user = {   //here without mention type in user, login accept the 'Icredential' iin line 341  and this is possible becauss of   Structural and Duck typing
+//     username: 'Anand',
+//     password: 'secret',
+//     isAdmin: true
+// };
+
+// login(user)
+
+// exm
+
+
+// login(user)
+
+
+// interface IAuth {
+//     username: string;
+//     password: string;
+//     login(username: string, password: string): boolean;
+// }
+
+// const auth: IAuth = {
+//     username: 'Anand',
+//     password: 'secret',
+//     login(usename: string, password: string) {  //here username and password are diffrent from line 356 and 357
+//         return true
+//     }
+// }
+
+
+
+
+
