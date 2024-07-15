@@ -32,6 +32,7 @@
 // boolean
 // Type Alias: To use create custom type, it starts with first capital letter. It makes code  more readable
 
+// Type: It is the shape of the object
 
 // type User = {
 //     name: string;
@@ -65,7 +66,7 @@
 
 /////////////////////////////
 
-// Interfaces: Same as type alias and chef of any object like type alias
+// Interfaces: It is the shape of the object. Same as type alias and chef of any object like type alias.
 
 // interface Transaction {
 //     payerAccountNumber: number
@@ -99,7 +100,7 @@
 // }
 
 
-//Extend : to over come the dublicates data so we use extend here. We can reuse
+//Extend : to overcome the dublicates data,  we use extend here. so that we can reuse
 
 // interface Book {
 //     name: string;
@@ -173,15 +174,144 @@
 
 // Unions
 
-type ID = number | string;
-//Narrowing
-function printId(id: ID) {
-    if (typeof id === "string") {
-        console.log(id.toUpperCase())
-    } else {
-        console.log(id)
-    }
 
-}
-console.log(printId("4"))
-// console.log(printId(4))
+// type ID = number | string;
+// //Narrowing
+// function printId(id: ID) {
+//     if (typeof id === "string") {
+//         console.log(id.toUpperCase())
+//     } else {
+//         console.log(id)
+//     }
+
+// }
+// console.log(printId("4"))
+// // console.log(printId(4))
+
+
+
+
+// function getFirstThree(x: string | number[]) {
+//     return x.slice(0, 3)
+// }
+
+// console.log(getFirstThree('hello'))
+// console.log(getFirstThree([1, 2, 3, 4, 5, 6, 7]))
+
+//////////////////////////////////////
+
+//Generics: andar koi bhi data send karo kaam hona chahhiye and type information loss nhi hona chahiye
+
+// Exm1
+// function logString(arg: string) {
+//     console.log(arg)
+//     return arg
+// }
+// logString("Logged ")
+
+// function logNumber(arg: number) {
+//     console.log(arg)
+//     return arg
+// }
+// logNumber(1)
+
+// function logArray(arg: any[]) {
+//     console.log(arg)
+//     return arg
+// }
+// logArray([2, 3])
+
+// no need to repeat above code
+
+// function logAnything<T>(arg: T): T { //here T is placeholder and T can be anything(Kuch bhi). To overcome loss of type information we use placeholder
+//     console.log(arg)
+//     return arg
+// }
+// logAnything([1, 2, 'hello'])
+
+
+///////////////////////
+
+// Exm2
+// interface HasAge {
+//     age: number;
+// }
+
+// function getOldest<T extends HasAge>(people: T[]): T {  //Created gneneric function hamne contract kar diya ki aisa koi bhi object dene jisake andar 'age' property ho
+//     return people.sort((a, b) => b.age - a.age).[0]
+// }
+
+// const people: HasAge[] = [
+//     { age: 20 },
+//     { age: 40 },
+//     { age: 70 }
+
+// ]
+
+
+// interface Player {
+//     name: string;
+//     age: number;
+// }
+
+// const players: Player[] = [
+//     { name: 'John', age: 30 },
+//     { name: 'Jon', age: 35 },
+//     { name: 'Rogn', age: 60 }
+// ]
+// // getOldest(players)
+
+// // Assertion
+// // const person = getOldest(players) as Player   //jo obj return ho rha usko hamne 'Player' type jabardasti bol diya but it's not recommended
+// //  In that case we use Generics
+
+
+// //Generics
+// const person = getOldest(players)
+
+// Exm3
+
+// interface IPost {
+//     title: string;
+//     id: number;
+//     description: string;
+// }
+
+// interface IUser {
+//     id: number;
+//     name: string;
+//     age: number;
+// }
+
+// const fetchData = async (path: string): Promise<IPost[]> => {  //made generics using IPost type
+//     const res = await fetch(`https//example.com${path}`)
+//     return res.json()
+// }
+
+// const fetchUserData = async (path: string): Promise<IUser[]> => {  //made generics using IUser type
+//     const res = await fetch(`https//example.com${path}`)
+//     return res.json()
+// }
+
+
+//No need to repeate the above code
+// created generic function
+
+// const fetchData = async<ResultType>(path: string): Promise<ResultType> => {
+//     const res = await fetch(`https//example.com${path}`)
+//     return res.json()
+// }
+
+// (async () => {
+//     // const posts = await fetchData('/posts')
+//     // posts[0]
+//     // const users = await fetchUserData('/users')
+//     // users[0].
+//     //////////
+//     //Generics
+//     // const users = fetchData<IUser[]>('/users')        //IUser is generic
+//     // users[0].
+//     const posts = await fetchData<IPost[]>('/posts')   //IPost is generic
+//     posts[0]
+
+// })()
